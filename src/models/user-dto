@@ -1,1 +1,56 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+class Date
+{
+private:
+	short month, day, year;
+public:
+	void init(void);
+	void init(int month, int day, int year);
+	void print(void);
+};
+void Date::init(void) {
+    struct tm* ptr;
+    time_t sec;
+    time(&sec);
+    ptr = localtime(&sec);
 
+    month = (short)ptr->tm_mon + 1;
+    day = (short)ptr->tm_mday;
+    year = (short)ptr->tm_year + 1900;
+}
+
+void Date::init(int m, int d, int y)
+{
+    month = (short)m;
+    day = (short)d;
+    year = (short)y;
+}
+
+void Date::print(void)
+{
+    cout << month << '-' << day << '-' << year
+        << endl;
+}
+class UserDto
+{
+private: 
+	string name;
+	int age;
+    Date dateOfBirth;
+public:
+    /*const string getName()
+    {
+        return name;
+    }
+    const int getAge()
+    {
+        return age;
+    }
+    const Date getDateOfBirth()
+    {
+        return dateOfBirth;
+    }*/
+};
